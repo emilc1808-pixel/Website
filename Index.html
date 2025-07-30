@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Meine Minecraft Server</title>
+  <style>
+    /* (Dein bisheriges CSS bleibt, ich füge nur die Creeper-Animation hinzu) */
+
+    /* Creeper Popup Styles */
+    #creeper-popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #4caf50;
+      color: #121212;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #388e3c;
+      font-weight: bold;
+      font-family: monospace;
+      display: none;
+      z-index: 9999;
+      text-align: center;
+      max-width: 300px;
+      user-select: none;
+    }
+    #creeper-popup img {
+      width: 100px;
+      margin-bottom: 10px;
+    }
+    #creeper-popup button {
+      margin-top: 10px;
+      background: #388e3c;
+      color: #eee;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="site-title" style="cursor:pointer;">Skaters Minecraft Server</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>Unsere Server</h2>
+      <div class="server-list">
+        <div class="server-card">
+          <h3>Survival Server</h3>
+          <div class="ip" title="Klicke zum Kopieren" onclick="copyIpWithQuote('play.survival.de')">play.survival.de</div>
+          <ul class="features">
+            <li>PvE & PvP kombiniert</li>
+            <li>Freundliche Community</li>
+            <li>Regelmäßige Events</li>
+            <li>Große Welten und Städte</li>
+          </ul>
+          <p>Erlebe spannende Abenteuer in unserer Survival-Welt mit fairen Regeln und aktiven Admins.</p>
+        </div>
+
+        <div class="server-card">
+          <h3>Creative Server</h3>
+          <div class="ip" title="Klicke zum Kopieren" onclick="copyIpWithQuote('play.creative.de')">play.creative.de</div>
+          <ul class="features">
+            <li>Unbegrenzte Baublöcke</li>
+            <li>Schutz vor Griefing</li>
+            <li>Community Projekte</li>
+            <li>Discord Support</li>
+          </ul>
+          <p>Bau deine Traumwelt mit Freunden auf unserem Creative-Server ohne Einschränkungen.</p>
+        </div>
+
+        <div class="server-card">
+          <h3>Minigames Server</h3>
+          <div class="ip" title="Klicke zum Kopieren" onclick="copyIpWithQuote('play.minigames.de')">play.minigames.de</div>
+          <ul class="features">
+            <li>Schnelle & spaßige Spiele</li>
+            <li>BedWars, SkyWars, uvm.</li>
+            <li>Turniere und Ranglisten</li>
+            <li>Für alle Altersgruppen</li>
+          </ul>
+          <p>Spiele spannende Minispiele und messe dich mit anderen Spielern auf hohem Niveau.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Bewertungen unserer Spieler</h2>
+      <blockquote>"Der Survival Server ist super stabil und die Community mega freundlich. Macht richtig Spaß!" – Anna</blockquote>
+      <blockquote>"Creative ist perfekt für meine Bauprojekte, keine Laggs, tolle Plugins." – Max</blockquote>
+      <blockquote>"Minigames sind super abwechslungsreich und es gibt immer coole Events." – Lisa</blockquote>
+    </section>
+
+    <section>
+      <h2>Kontakt</h2>
+      <form onsubmit="event.preventDefault(); alert('Danke für deine Nachricht! Wir melden uns bald.'); this.reset();">
+        <input type="text" name="name" placeholder="Dein Name" required />
+        <input type="email" name="email" placeholder="Deine E-Mail" required />
+        <textarea name="message" rows="5" placeholder="Deine Nachricht" required></textarea>
+        <button type="submit">Absenden</button>
+      </form>
+    </section>
+  </main>
+
+  <footer id="footer" style="cursor:pointer;">
+    &copy; 2025 Skaters Minecraft Server | Alle Rechte vorbehalten
+  </footer>
+
+  <!-- Creeper Popup -->
+  <div id="creeper-popup">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Minecraft_Creeper.png/220px-Minecraft_Creeper.png" alt="Creeper" />
+    <div>Boo! Ein Creeper ist hinter dir!</div>
+    <button onclick="hideCreeper()">Schließen</button>
+  </div>
+
+  <script>
+    // Easter Egg 1: Klick auf Titel
+    document.getElementById('site-title').addEventListener('click', () => {
+      alert('Willkommen auf Skaters Minecraft Server! Bereit für Abenteuer? 🌍⛏️');
+    });
+
+    // Easter Egg 2: IP Kopieren + lustiges Minecraft-Zitat
+    const minecraftQuotes = [
+      "Creeper? Aww man...",
+      "Schaufel den Boden, baue deine Welt!",
+      "Zombies lieben die Nacht, du solltest aufpassen!",
+      "Ein Diamant am Tag hält die Creeper fern.",
+      "Die Enderdrachen fliegen hoch – und du auch?",
+      "Baue schlau, überlebe lang!"
+    ];
+    function copyIpWithQuote(ip) {
+      navigator.clipboard.writeText(ip).then(() => {
+        alert(`IP "${ip}" wurde in die Zwischenablage kopiert!\n\nMinecraft sagt:\n"${randomQuote()}"`);
+      }).catch(() => {
+        alert('Kopieren nicht möglich, bitte manuell markieren.');
+      });
+    }
+    function randomQuote() {
+      return minecraftQuotes[Math.floor(Math.random() * minecraftQuotes.length)];
+    }
+
+    // Easter Egg 3: Konami Code
+    // ↑↑↓↓←→←→BA
+    const konamiCode = [38,38,40,40,37,39,37,39,66,65];
+    let konamiIndex = 0;
+
+    window.addEventListener('keydown', (e) => {
+      if (e.keyCode === konamiCode[konamiIndex]) {
+        konamiIndex++;
+        if (konamiIndex === konamiCode.length) {
+          showCreeper();
+          konamiIndex = 0;
+        }
+      } else {
+        konamiIndex = 0;
+      }
+    });
+
+    function showCreeper() {
+      const popup = document.getElementById('creeper-popup');
+      popup.style.display = 'block';
+    }
+    function hideCreeper() {
+      const popup = document.getElementById('creeper-popup');
+      popup.style.display = 'none';
+    }
+
+    // Easter Egg 4: Klick auf Footer zeigt Witz
+    document.getElementById('footer').addEventListener('click', () => {
+      alert('Warum können Creeper keine guten Witze erzählen?\nWeil sie immer explodieren vor Lachen! 💥😂');
+    });
+  </script>
+</body>
+</html>
